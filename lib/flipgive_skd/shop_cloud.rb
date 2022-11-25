@@ -3,7 +3,6 @@ require 'jwt'
 class FlipgiveSDK::ShopCloud
   TTL = 3600.freeze
   CURRENCIES = %w(CAD USD).freeze
-  COUNTIES = %w(CA US).freeze
 
   class << self
     def flip(partner_id, secret, ttl=nil)
@@ -79,7 +78,7 @@ class FlipgiveSDK::ShopCloud
       @errors << {user_data: "User ID missing."} if data[:id].nil?
       @errors << {user_data: "User name missing."} if data[:name].nil?
       @errors << {user_data: "User email missing."} if data[:email].nil?
-      @errors << {user_data: "User currency must be 'USD' or 'CAD'."} unless CURRENCIES.include?(data[:currency])
+      @errors << {user_data: "User currency must be one of: '#{CURRENCIES.join(', ')}'."} unless CURRENCIES.include?(data[:currency])
       @errors << {user_data: "User :is_captain (boolean) missing."} if data[:is_captain].nil?
     end
 
@@ -88,14 +87,10 @@ class FlipgiveSDK::ShopCloud
       @errors << {campaign_data: "Campaign ID missing."} if data[:id].nil?
       @errors << {campaign_data: "Campaign name missing."} if data[:name].nil?
       @errors << {campaign_data: "Campaign category missing."} if data[:category].nil?
-      @errors << {campaign_data: "Campaign currency must be in #{CURRENCIES}"} unless CURRENCIES.include?(data[:currency])
+      @errors << {campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(', ')}'."} unless CURRENCIES.include?(data[:currency])
     end
 
     def validate_minimun_data
-      
-    end
-
-    def validate_location
       
     end
 
