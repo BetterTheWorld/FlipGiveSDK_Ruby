@@ -5,28 +5,29 @@ class FlipgiveSDK::ShopCloud
   CURRENCIES = %w(CAD USD).freeze
 
   class << self
-    def flip(partner_id, secret, ttl=nil)
-      @partner_id = partner_id
+    def flip(cloud_shop_id, secret, ttl=nil)
+      @cloud_shop_id = cloud_shop_id
       @secret = secret
       @ttl = ttl || TTL
       @errors = []
+      :initialized
     end
 
     def identified_token(payload)
       raise validation_error unless valid_identified?(payload)
       token = JWT.encode({payload: payload, exp: exp}, secret, 'HS256')
-      [token, partner_id].join('|')
+      [token, cloud_shop_id].join('@')
     end
 
     def anonymous_token(payload)
       raise validation_error unless valid_anonymous?(payload)
       token = JWT.encode({payload: payload, exp: exp}, secret, 'HS256')
-      [token, partner_id].join('|')
+      [token, cloud_shop_id].join('@')
     end
 
     def read_token(token)
-      data = token.split('|')
-      return nil if data.last != partner_id
+      data = token.split('@')
+      return nil if data.last != cloud_shop_id
       JWT.decode(data[0], secret, true, { algorithm: 'HS256' })
     end
 
@@ -107,8 +108,8 @@ class FlipgiveSDK::ShopCloud
       @secret
     end
 
-    def partner_id
-      @partner_id
+    def cloud_shop_id
+      @cloud_shop_id
     end
   end
 end

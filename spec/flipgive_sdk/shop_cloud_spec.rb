@@ -4,11 +4,11 @@ require 'securerandom'
 RSpec.describe FlipgiveSDK::ShopCloud do
 
   before(:all) do
-    FlipgiveSDK::ShopCloud.flip("pidba98131be", "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a")
+    FlipgiveSDK::ShopCloud.flip("PIDBA98131BE", "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a")
   end
 
   let(:secret) { "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a" }
-  let(:partner_id) { "pidba98131be" }
+  let(:cloud_shop_id) { "PIDBA98131BE" }
 
   let(:user_data) {{
     "id" => 3141592,
@@ -37,16 +37,18 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   it "expects secret and partner id" do
 
     expect(FlipgiveSDK::ShopCloud).to receive(:secret).and_return(secret)
-    expect(FlipgiveSDK::ShopCloud).to receive(:partner_id).and_return(partner_id)
+    expect(FlipgiveSDK::ShopCloud).to receive(:cloud_shop_id).and_return(cloud_shop_id)
     allow(FlipgiveSDK::ShopCloud).to receive(:valid_identified?).and_return true
 
     FlipgiveSDK::ShopCloud.identified_token({foo: 'bar'})
   end
 
-  it "expects token to be generated and append partner_id" do
+  it "expects token to be generated and append cloud_shop_id" do
 
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
-    regexp = Regexp.new("#{partner_id}\\z")
+    regexp = Regexp.new("#{cloud_shop_id}\\z")
+
+    p token
 
     expect(token).to be_kind_of(String)
     expect(token).to match(regexp)
@@ -78,7 +80,7 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   end
 
   it "expects token to have expired" do
-    FlipgiveSDK::ShopCloud.flip(partner_id, secret, -10)
+    FlipgiveSDK::ShopCloud.flip(cloud_shop_id, secret, -10)
 
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
     
