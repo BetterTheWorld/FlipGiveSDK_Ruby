@@ -4,11 +4,11 @@ require 'securerandom'
 RSpec.describe FlipgiveSDK::ShopCloud do
 
   before(:all) do
-    FlipgiveSDK::ShopCloud.flip("PIDBA98131BE", "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a")
+    FlipgiveSDK::ShopCloud.flip("BB126923", "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a")
   end
 
   let(:secret) { "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a" }
-  let(:cloud_shop_id) { "PIDBA98131BE" }
+  let(:cloud_shop_id) { "BB126923" }
 
   let(:user_data) {{
     "id" => 3141592,
