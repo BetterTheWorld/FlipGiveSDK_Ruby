@@ -13,4 +13,4 @@ gem "rubocop", "~> 1.21"
 
 gem "jwt"
 
-gem 'rdoc'
+gem "rdoc"

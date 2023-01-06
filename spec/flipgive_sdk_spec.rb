@@ -5,10 +5,6 @@ RSpec.describe FlipgiveSDK do
     expect(FlipgiveSDK::VERSION).not_to be nil
   end
 
-  xit "does something useful" do
-    expect(false).to eq(true)
-  end
-
   it "expects ShopCloud to exist" do
     expect(FlipgiveSDK::ShopCloud).not_to be nil
   end
