@@ -1,5 +1,6 @@
 require "jwt"
 
+# class to handle shop cloud tokens
 class FlipgiveSDK::ShopCloud
   TTL = 3600
   CURRENCIES = %w[CAD USD].freeze
@@ -83,9 +84,9 @@ class FlipgiveSDK::ShopCloud
       @errors << { user_data: "User ID missing." } if data[:id].nil?
       @errors << { user_data: "User name missing." } if data[:name].nil?
       @errors << { user_data: "User email missing." } if data[:email].nil?
-      unless CURRENCIES.include?(data[:currency])
-        @errors << { user_data: "User currency must be one of: '#{CURRENCIES.join(", ")}'." }
-      end
+      return if  CURRENCIES.include?(data[:currency])
+
+      @errors << { user_data: "User currency must be one of: '#{CURRENCIES.join(", ")}'." }
     end
 
     def validate_campaign_data
@@ -93,15 +94,15 @@ class FlipgiveSDK::ShopCloud
       @errors << { campaign_data: "Campaign ID missing." } if data[:id].nil?
       @errors << { campaign_data: "Campaign name missing." } if data[:name].nil?
       @errors << { campaign_data: "Campaign category missing." } if data[:category].nil?
-      unless CURRENCIES.include?(data[:currency])
-        @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." }
-      end
+      return if  CURRENCIES.include?(data[:currency])
+
+      @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." }
     end
 
     def symbolize_keys(hazh)
       return hazh if hazh.empty?
 
-      Hash[hazh.map { |key, value| [key.to_sym, value] }]
+      hazh.transform_keys(&:to_sym)
     end
 
     def exp
