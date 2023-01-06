@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "lib/flipgive_skd/version"
+require_relative "lib/flipgive_sdk/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "flipgive_skd"
+  spec.name = "flipgive_sdk"
   spec.version = FlipgiveSDK::VERSION
   spec.authors = ["Alejandro"]
   spec.email = ["alosada@gmail.com"]

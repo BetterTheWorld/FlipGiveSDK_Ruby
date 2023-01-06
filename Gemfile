@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in flipgive_skd.gemspec
+# Specify your gem's dependencies in flipgive_sdk.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

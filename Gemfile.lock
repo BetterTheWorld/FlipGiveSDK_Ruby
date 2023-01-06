@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    flipgive_skd (0.1.0)
+    flipgive_sdk (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -50,7 +50,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  flipgive_skd!
+  flipgive_sdk!
   jwt
   rake (~> 13.0)
   rdoc

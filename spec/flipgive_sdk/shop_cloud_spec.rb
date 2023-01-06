@@ -14,9 +14,9 @@ RSpec.describe FlipgiveSDK::ShopCloud do
     "id" => 3141592,
     "name" => 'Emmet Brown',
     "email" => 'ebrown@time.com',
-    "currency"=> 'CAD',
-    "is_captain" => false
+    "currency"=> 'CAD'
   }}
+
   let(:campaign_data) {{
     "id" => 3141592,
     "name" => 'The Time Travelers',
@@ -48,8 +48,6 @@ RSpec.describe FlipgiveSDK::ShopCloud do
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
     regexp = Regexp.new("#{cloud_shop_id}\\z")
 
-    p token
-
     expect(token).to be_kind_of(String)
     expect(token).to match(regexp)
   end
@@ -70,9 +68,6 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   end
 
   it "expects token to be successfully decoded" do
-
-    expected = {"foo" => 'bar'}
-
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
     data = FlipgiveSDK::ShopCloud.read_token(token)
     

@@ -80,7 +80,6 @@ class FlipgiveSDK::ShopCloud
       @errors << {user_data: "User name missing."} if data[:name].nil?
       @errors << {user_data: "User email missing."} if data[:email].nil?
       @errors << {user_data: "User currency must be one of: '#{CURRENCIES.join(', ')}'."} unless CURRENCIES.include?(data[:currency])
-      @errors << {user_data: "User :is_captain (boolean) missing."} if data[:is_captain].nil?
     end
 
     def validate_campaign_data
@@ -89,10 +88,6 @@ class FlipgiveSDK::ShopCloud
       @errors << {campaign_data: "Campaign name missing."} if data[:name].nil?
       @errors << {campaign_data: "Campaign category missing."} if data[:category].nil?
       @errors << {campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(', ')}'."} unless CURRENCIES.include?(data[:currency])
-    end
-
-    def validate_minimun_data
-      
     end
 
     def symbolize_keys(hazh)
