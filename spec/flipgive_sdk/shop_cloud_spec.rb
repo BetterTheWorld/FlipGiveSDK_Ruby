@@ -62,7 +62,8 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   end
 
   it "expects invalid user_data_errors" do
-    payload["user_data"] = nil
+    payload["user_data"] = {}
+    payload["campaign_data"] = nil
 
     expect { FlipgiveSDK::ShopCloud.identified_token(payload) }.to raise_error(FlipgiveSDK::Error)
     expect(FlipgiveSDK::ShopCloud.errors).not_to be_empty
