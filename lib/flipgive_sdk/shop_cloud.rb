@@ -4,6 +4,8 @@ require "jwt"
 class FlipgiveSDK::ShopCloud
   TTL = 31536000 # 1.year
   CURRENCIES = %w[CAD USD].freeze
+    attr_reader :secret, :cloud_shop_id, :errors
+    
 
   class << self
     def flip(cloud_shop_id, secret, ttl = nil)
@@ -24,11 +26,8 @@ class FlipgiveSDK::ShopCloud
     def read_token(token)
       data = token.split("@")
       return nil if data.last != cloud_shop_id
-
       JWT.decode(data[0], secret, true, { algorithm: "HS256" })
     end
-
-    attr_reader :errors
 
     def valid_identified?(payload)
       @errors = []
@@ -37,8 +36,7 @@ class FlipgiveSDK::ShopCloud
       validate_user_data(:user, @payload[:user_data]) if @payload[:user_data]
       validate_campaign_data if @payload[:campaign_data]
       return true if errors.empty?
-
-      @payload = nil
+      @payload = {}
       false
     end
 
@@ -50,25 +48,25 @@ class FlipgiveSDK::ShopCloud
 
     def validate_payload
       validate_format
-      @errors << { payload: "User data missing." } if (@payload.fetch(:user_data, {}) || {}).empty?
+      validate_minimun_data
     end
 
     def validate_format
-      return @payload = symbolize_keys(@payload) if @payload.is_a?(Hash)
-
-      @payload = {}
-      @errors << { payload: "Payload is not a hash." }
+      if @payload.is_a?(Hash)
+        @payload = symbolize_keys(@payload)
+      else
+        @errors << { payload: "Payload must be a Hash." }
+        @payload = {}
+      end
     end
 
-    def validate_formatvalidate_format
-      return @payload = symbolize_keys(@payload) if @payload.is_a?(Hash)
-
-      @payload = {}
-      @errors << { payload: "Payload is not a hash." }
+    def validate_minimun_data
+      return nil if (@payload[:user_data] || @payload[:campaign_data] || {}).any?
+      @errors << { payload: "At least must contain user_data or campaign_data." }
     end
 
-    def validate_user_data(key, data)
-      data = symbolize_keys(@payload[:user_data] || {})
+    def validate_person_data(key, data)
+      data = symbolize_keys(data || {})
       @errors << { "#{key.to_s}_data".to_sym => "#{key.to_s.capitalize} ID missing." } if data[:id].nil?
       @errors << { "#{key.to_s}_data".to_sym => "#{key.to_s.capitalize} name missing." } if data[:name].nil?
       @errors << { "#{key.to_s}_data".to_sym => "#{key.to_s.capitalize} email missing." } if data[:email].nil?
@@ -84,8 +82,7 @@ class FlipgiveSDK::ShopCloud
       @errors << { campaign_data: "Campaign name missing." } if data[:name].nil?
       @errors << { campaign_data: "Campaign category missing." } if data[:category].nil?
       @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." } unless CURRENCIES.include?(data[:currency])
-      validate_user_data(:campaign_owner, @payload[:campaign_data][:owner_data])
-
+      validate_person_data(:campaign_owner, @payload[:campaign_data][:owner_data])
     end
 
     def symbolize_keys(hazh)
@@ -98,6 +95,5 @@ class FlipgiveSDK::ShopCloud
       (Time.now + @ttl).to_i
     end
 
-    attr_reader :secret, :cloud_shop_id
   end
 end
