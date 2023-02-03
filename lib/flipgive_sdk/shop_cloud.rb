@@ -4,7 +4,6 @@ require "jwt"
 class FlipgiveSDK::ShopCloud
   TTL = 31536000 # 1.year
   CURRENCIES = %w[CAD USD].freeze
-    attr_reader :secret, :cloud_shop_id, :errors
     
 
   class << self
@@ -16,6 +15,12 @@ class FlipgiveSDK::ShopCloud
       :initialized
     end
 
+    def read_token(token)
+      data = token.split("@")
+      raise invalid_token_error if data.last != cloud_shop_id
+      JWT.decode(data[0], secret, true, { algoricloud_shop_idthm: "HS256" })
+    end
+
     def identified_token(payload)
       raise validation_error unless valid_identified?(payload)
 
@@ -23,24 +28,26 @@ class FlipgiveSDK::ShopCloud
       [token, cloud_shop_id].join("@")
     end
 
-    def read_token(token)
-      data = token.split("@")
-      return nil if data.last != cloud_shop_id
-      JWT.decode(data[0], secret, true, { algorithm: "HS256" })
-    end
-
     def valid_identified?(payload)
       @errors = []
       @payload = payload
       validate_payload
-      validate_user_data(:user, @payload[:user_data]) if @payload[:user_data]
+      validate_person_data(:user, @payload[:user_data]) if @payload[:user_data]
       validate_campaign_data if @payload[:campaign_data]
       return true if errors.empty?
       @payload = {}
       false
     end
 
+    def errors
+      @errors
+    end
+
     private
+
+    def invalid_token_error
+      FlipgiveSDK::Error.new("Invalid Token.")
+    end
 
     def validation_error
       FlipgiveSDK::Error.new("Invalid payload.")
@@ -73,7 +80,7 @@ class FlipgiveSDK::ShopCloud
 
       return if  CURRENCIES.include?(data[:currency])
 
-      @errors << { "#{key.to_s}_data".to_sym => "User currency must be one of: '#{CURRENCIES.join(", ")}'." }
+      @errors << { "#{key.to_s}_data".to_sym => "Currency must be one of: '#{CURRENCIES.join(", ")}'." }
     end
 
     def validate_campaign_data
@@ -82,7 +89,7 @@ class FlipgiveSDK::ShopCloud
       @errors << { campaign_data: "Campaign name missing." } if data[:name].nil?
       @errors << { campaign_data: "Campaign category missing." } if data[:category].nil?
       @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." } unless CURRENCIES.include?(data[:currency])
-      validate_person_data(:campaign_owner, @payload[:campaign_data][:owner_data])
+      validate_person_data(:campaign_owner, data[:owner_data])
     end
 
     def symbolize_keys(hazh)
@@ -95,5 +102,12 @@ class FlipgiveSDK::ShopCloud
       (Time.now + @ttl).to_i
     end
 
+    def secret
+      @secret
+    end
+
+    def cloud_shop_id
+      @cloud_shop_id
+    end
   end
 end
