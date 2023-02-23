@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require "securerandom"
+# verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a
 
 RSpec.describe FlipgiveSDK::ShopCloud do
   before(:all) do
-    FlipgiveSDK::ShopCloud.flip("BB126923", "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a")
+    FlipgiveSDK::ShopCloud.flip("BB126923", "sk_61c394cf3346077b")
   end
 
-  let(:secret) { "verysecrettoken57e6323c7c74bba0e9fd4d702aeea756c0901e3a6b453671a" }
+  let(:secret) { "61c394cf3346077b" }
   let(:cloud_shop_id) { "BB126923" }
 
   let(:user_data) do
@@ -97,15 +98,6 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   it "expects token to be successfully decoded" do
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
     data = FlipgiveSDK::ShopCloud.read_token(token)
-
-    expect(data[0]["payload"]).to eq(payload)
-  end
-
-  it "expects token to have expired" do
-    FlipgiveSDK::ShopCloud.flip(cloud_shop_id, secret, -10)
-
-    token = FlipgiveSDK::ShopCloud.identified_token(payload)
-
-    expect { FlipgiveSDK::ShopCloud.read_token(token) }.to raise_error(JWT::ExpiredSignature)
+    expect(data).to eq(payload)
   end
 end

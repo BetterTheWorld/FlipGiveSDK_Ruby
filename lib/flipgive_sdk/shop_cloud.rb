@@ -1,30 +1,28 @@
-require "jwt"
+require "jwe"
 
 # class to handle shop cloud tokens
 class FlipgiveSDK::ShopCloud
-  TTL = 31536000 # 1.year
   CURRENCIES = %w[CAD USD].freeze
     
 
   class << self
     def flip(cloud_shop_id, secret, ttl = nil)
       @cloud_shop_id = cloud_shop_id
-      @secret = secret
-      @ttl = ttl || TTL
+      @secret = secret.gsub('sk_',nil.to_s)
       @errors = []
       :initialized
     end
 
     def read_token(token)
-      data = token.split("@")
-      raise invalid_token_error if data.last != cloud_shop_id
-      JWT.decode(data[0], secret, true, { algoricloud_shop_idthm: "HS256" })
+      encrypted_string, shop_id = token.split("@")
+      raise invalid_token_error if shop_id != cloud_shop_id
+      json = JWE.decrypt(encrypted_string, secret)
+      JSON.parse(json)
     end
 
     def identified_token(payload)
       raise validation_error unless valid_identified?(payload)
-
-      token = JWT.encode({ payload: payload, exp: exp }, secret, "HS256")
+      token = JWE.encrypt(payload.to_json, secret, alg: 'dir')
       [token, cloud_shop_id].join("@")
     end
 
