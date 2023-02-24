@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "flipgive_sdk"
   spec.version = FlipgiveSDK::VERSION
   spec.authors = ["Alejandro"]
-  spec.email = ["alosada@gmail.com"]
+  spec.email = ["alosada@flipgive.com"]
 
   spec.summary = "FlipGive's Shop Cloud Ruby SDK."
   spec.description = "FlipGive's Shop Cloud Ruby SDK."
