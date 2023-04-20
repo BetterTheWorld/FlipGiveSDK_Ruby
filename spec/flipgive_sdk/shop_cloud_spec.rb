@@ -42,11 +42,12 @@ RSpec.describe FlipgiveSDK::ShopCloud do
   end
 
   it "expects secret and partner id" do
-    expect(FlipgiveSDK::ShopCloud).to receive(:secret).and_return(secret)
-    expect(FlipgiveSDK::ShopCloud).to receive(:cloud_shop_id).and_return(cloud_shop_id)
-    allow(FlipgiveSDK::ShopCloud).to receive(:valid_identified?).and_return true
+    fg_shop_cloud = FlipgiveSDK::ShopCloud.new("BB126923", "sk_61c394cf3346077b")
+    expect(fg_shop_cloud).to receive(:secret).and_return(secret)
+    expect(fg_shop_cloud).to receive(:cloud_shop_id).and_return(cloud_shop_id)
+    allow(fg_shop_cloud).to receive(:valid_identified?).and_return true
 
-    FlipgiveSDK::ShopCloud.identified_token({ foo: "bar" })
+    fg_shop_cloud.identified_token({ foo: "bar" })
   end
 
   it "expects token to be generated and append cloud_shop_id" do
@@ -99,5 +100,12 @@ RSpec.describe FlipgiveSDK::ShopCloud do
     token = FlipgiveSDK::ShopCloud.identified_token(payload)
     data = FlipgiveSDK::ShopCloud.read_token(token)
     expect(data).to eq(payload)
+  end
+
+  it "Partner token has partner_token type" do
+    token = FlipgiveSDK::ShopCloud.partner_token
+    data = FlipgiveSDK::ShopCloud.read_token(token)
+    expect(data['type']).to eq('partner_token')
+    expect(data['expires']).to eq(Time.now.to_i + 3600)
   end
 end
