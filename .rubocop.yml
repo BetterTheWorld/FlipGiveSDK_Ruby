@@ -17,3 +17,6 @@ Style/FrozenStringLiteralComment:
 
 Style/ClassAndModuleChildren:
   Enabled: false 
+
+Metrics/ClassLength:
+  Max: 200

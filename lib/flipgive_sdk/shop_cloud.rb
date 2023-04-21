@@ -76,6 +76,8 @@ class FlipgiveSDK::ShopCloud
 
   private
 
+  attr_reader :secret, :cloud_shop_id
+
   def invalid_token_error
     FlipgiveSDK::Error.new("Invalid Token.")
   end
@@ -136,8 +138,6 @@ class FlipgiveSDK::ShopCloud
 
     hazh.transform_keys(&:to_sym)
   end
-
-  attr_reader :secret, :cloud_shop_id
 
   def partner_token_ttl
     (Time.now.to_i + PARTNER_TOKEN_TTL)
