@@ -26,13 +26,13 @@ RSpec.describe FlipgiveSDK::ShopCloud do
       "name" => "The Time Travelers",
       "category" => "Running",
       "currency" => "CAD",
-      "owner_data" => user_data 
+      "owner_data" => user_data
     }
   end
 
   let(:group_data) do
     {
-      "name" => 'Player 1'
+      "name" => "Player 1"
     }
   end
 
@@ -58,7 +58,6 @@ RSpec.describe FlipgiveSDK::ShopCloud do
       fg_shop_cloud.identified_token({ foo: "bar" })
     end
   end
- 
 
   context "#token" do
     it "expects token to be generated and append cloud_shop_id" do
@@ -116,8 +115,8 @@ RSpec.describe FlipgiveSDK::ShopCloud do
     it "Partner token has partner_token type" do
       token = FlipgiveSDK::ShopCloud.partner_token
       data = FlipgiveSDK::ShopCloud.read_token(token)
-      expect(data['type']).to eq('partner_token')
-      expect(data['expires']).to eq(Time.now.to_i + 3600)
+      expect(data["type"]).to eq("partner_token")
+      expect(data["expires"]).to eq(Time.now.to_i + 3600)
     end
   end
 
