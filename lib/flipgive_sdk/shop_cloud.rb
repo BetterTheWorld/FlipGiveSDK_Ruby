@@ -57,6 +57,7 @@ class FlipgiveSDK::ShopCloud
     validate_payload
     validate_person_data(:user, @payload[:user_data]) if @payload[:user_data]
     validate_campaign_data if @payload[:campaign_data]
+    validate_team_data if @payload[:team_data]
     return true if errors.empty?
     @payload = {}
     false
@@ -119,6 +120,11 @@ class FlipgiveSDK::ShopCloud
     @errors << { campaign_data: "Campaign category missing." } if data[:category].nil?
     @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." } unless CURRENCIES.include?(data[:currency])
     validate_person_data(:campaign_owner, data[:owner_data])
+  end
+
+  def validate_group_data
+    data = symbolize_keys(@payload[:group_data] || {})
+    @errors << { campaign_data: "Team name missing." } if data[:name].nil?
   end
 
   def symbolize_keys(hazh)
