@@ -108,13 +108,15 @@ class FlipgiveSDK::ShopCloud
 
   def validate_person_data(key, data)
     data = symbolize_keys(data || {})
-    @errors << { "#{key}_data".to_sym => "#{key.to_s.capitalize} ID missing." } if data[:id].nil?
-    @errors << { "#{key}_data".to_sym => "#{key.to_s.capitalize} name missing." } if data[:name].nil?
-    @errors << { "#{key}_data".to_sym => "#{key.to_s.capitalize} email missing." } if data[:email].nil?
+    sym = "#{key}_data".to_sym 
+    string = key.to_s.capitalize
+    @errors << { sym => "#{string} ID missing." } if data[:id].nil?
+    @errors << { sym => "#{string} name missing." } if data[:name].nil?
+    @errors << { sym => "#{string} email missing." } if data[:email].nil?
 
     return if  CURRENCIES.include?(data[:currency])
 
-    @errors << { "#{key}_data".to_sym => "Currency must be one of: '#{CURRENCIES.join(", ")}'." }
+    @errors << { sym => "Currency must be one of: '#{CURRENCIES.join(", ")}'." }
   end
 
   def validate_campaign_data
