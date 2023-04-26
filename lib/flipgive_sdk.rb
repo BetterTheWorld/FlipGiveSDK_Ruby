@@ -5,5 +5,4 @@ require_relative "flipgive_sdk/shop_cloud"
 
 module FlipgiveSDK
   class Error < StandardError; end
-  # Your code goes here...
 end

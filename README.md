@@ -1,29 +1,42 @@
 # FlipgiveSDK
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/flipgive_sdk`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Shop Cloud
 
-TODO: Delete this and the text above, and describe your gem
+Shop Cloud is [FlipGive's](https://app.flipgive.com) drop-in cashback store. If you would like to know more please visit "site" or contact us at "contact".
 
-## Installation
+### Links of Interest
 
-Install the gem and add to the application's Gemfile by executing:
+* [FlipGive](https://app.flipgive.com)
+* [API Documentation](https://app.flipgive.com)
 
-    $ bundle add flipgive_sdk
+### Installation
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+To begin using FlipGiveSDK::ShopCloud, you should have obtained an ID and Secret pair from FlipGive, Store these securely so that they are accesible in your application (Env variables, rails credentials, etc), we'll be using Rails credentials for our examples. If you haven't recieved credentials, please contact us.
 
-    $ gem install flipgive_sdk
+Add the gem to yout Gemfile:
 
-## Usage
+```ruby
+ $ gem 'flipgive_sdk', git: "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby.git"
+```
+
+After you have installed the gem include run the code bellow to initialize the ShopCloud:
+
+```ruby
+    FlipgiveSDK::ShopCloud.flip(Rails.application.credentials.shop_cloud_id, Rails.application.credentials.shop_cloud_secret)
+``` 
+We recomend using it's own initializer file `myapp/config/initializers/shop_cloud.rb`
+
+ShopCloud is now ready to use.
+
+### Usage
 
 TODO: Write usage instructions here
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
+### Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/flipgive_sdk.
+
+
+## License
+
+Some license
