@@ -2,7 +2,7 @@ require "jwe"
 
 # class to handle shop cloud tokens
 class FlipgiveSDK::ShopCloud
-  CURRENCIES = %w[CAD USD].freeze
+  COUNTRIES = %w[CAN USA].freeze
   PARTNER_TOKEN_TTL = 3600 # SECONDS
 
   class << self
@@ -59,7 +59,9 @@ class FlipgiveSDK::ShopCloud
     validate_payload
     validate_person_data(:user, @payload[:user_data]) if @payload[:user_data]
     validate_campaign_data if @payload[:campaign_data]
-    validate_team_data if @payload[:team_data]
+    validate_group_data if @payload[:group_data]
+    validate_organization_data if @payload[:organization_data]
+    validate_division_data if @payload[:division_data]
     return true if errors.empty?
 
     @payload = {}
@@ -106,33 +108,44 @@ class FlipgiveSDK::ShopCloud
     @errors << { payload: "At least must contain user_data or campaign_data." }
   end
 
-  def validate_person_data(key, data)
+  def validate_person_data(sym, data)
     data = symbolize_keys(data || {})
-    sym = "#{key}_data".to_sym 
-    string = key.to_s.capitalize
-    @errors << { sym => "#{string} ID missing." } if data[:id].nil?
-    @errors << { sym => "#{string} name missing." } if data[:name].nil?
-    @errors << { sym => "#{string} email missing." } if data[:email].nil?
-
-    return if  CURRENCIES.include?(data[:currency])
-
-    @errors << { sym => "Currency must be one of: '#{CURRENCIES.join(", ")}'." }
+    sym = "#{sym}_data".to_sym
+    validate_presence(sym, data, :id)
+    validate_presence(sym, data, :name)
+    validate_presence(sym, data, :email)
+    validate_inclusion(sym, COUNTRIES, data, :country)
   end
 
   def validate_campaign_data
     data = symbolize_keys(@payload[:campaign_data] || {})
-    @errors << { campaign_data: "Campaign ID missing." } if data[:id].nil?
-    @errors << { campaign_data: "Campaign name missing." } if data[:name].nil?
-    @errors << { campaign_data: "Campaign category missing." } if data[:category].nil?
-    unless CURRENCIES.include?(data[:currency])
-      @errors << { campaign_data: "Campaign currency must be one of: '#{CURRENCIES.join(", ")}'." }
-    end
-    validate_person_data(:campaign_owner, data[:owner_data])
+    validate_presence(:campaign_data, data, :id)
+    validate_presence(:campaign_data, data, :name)
+    validate_presence(:campaign_data, data, :category)
+    validate_inclusion(:campaign_data, COUNTRIES, data, :country)
+    validate_person_data(:campaign_admin, data[:admin_data])
   end
 
   def validate_group_data
     data = symbolize_keys(@payload[:group_data] || {})
-    @errors << { campaign_data: "Team name missing." } if data[:name].nil?
+    @errors << { group_data: "name missing." } if data[:name].nil?
+  end
+
+  def validate_organization_data
+    data = symbolize_keys(@payload[:organization_data] || {})
+    validate_presence(:organization_data, data, :id)
+    validate_presence(:organization_data, data, :name)
+    validate_person_data(:organization_admin, data[:admin_data])
+  end
+
+  def validate_presence(data_key, data, key)
+    @errors << { data_key => "#{key} missing." } if data[key].nil?
+  end
+
+  def validate_inclusion(data_key, group, data, key)
+    return nil if group.include?(data[key])
+
+    @errors << { data_key => "#{key} must be one of: '#{group.join(", ")}'." }
   end
 
   def symbolize_keys(hazh)

@@ -20,3 +20,5 @@ Style/ClassAndModuleChildren:
 
 Metrics/ClassLength:
   Max: 200
+Metrics/MethodLength:
+  Max: 15

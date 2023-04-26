@@ -14,3 +14,5 @@ gem "rubocop", "~> 1.21"
 gem "jwe"
 
 gem "rdoc"
+
+gem "faker"
