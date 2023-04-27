@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.6
+  Exclude:
+    - 'spec/flipgive_sdk/*'
 
 Style/StringLiterals:
   Enabled: true
@@ -11,3 +13,14 @@ Style/StringLiteralsInInterpolation:
 
 Layout/LineLength:
   Max: 120
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false 
+
+Metrics/ClassLength:
+  Max: 200
+Metrics/MethodLength:
+  Max: 15
