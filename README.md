@@ -11,7 +11,7 @@ Shop Cloud(The Shop) is [FlipGive's](https://app.flipgive.com) drop-in cashback 
 
 ### Installation
 
-To begin using FlipGiveSDK::ShopCloud, you should have obtained an ID and Secret pair from FlipGive, Store these securely so that they are accessible in your application (Env variables, rails credentials, etc), we'll be using Env variables for our example. If you haven't received credentials, please contact us.
+To begin using FlipGiveSDK::ShopCloud, you should have obtained an ID and Secret pair from FlipGive, Keep these securely but accessible in your application (Env variables, Rails credentials, etc ), we'll be using Env variables for our example. If you haven't received these credentials, please contact us.
 
 Add the gem to your Gemfile:
 
@@ -70,7 +70,7 @@ This method is used to generate a token that will identify a user or campaign. I
     $ campaign_data = {
       id: 19551105,
       name: 'The Time Travelers',
-      category: 'Running',
+      category: 'Events & Trips',
       country: 'CAN',
       admin_data: user_data
     }
