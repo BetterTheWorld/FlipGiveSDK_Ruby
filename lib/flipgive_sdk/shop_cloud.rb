@@ -69,7 +69,7 @@ class FlipgiveSDK::ShopCloud
   end
 
   def partner_token
-    payload = { type: "partner_token", expires:  partner_token_ttl }
+    payload = { type: "partner", expires:  partner_token_expiration }
     token = JWE.encrypt(payload.to_json, secret, alg: "dir")
     [token, cloud_shop_id].join("@")
   end
@@ -154,7 +154,7 @@ class FlipgiveSDK::ShopCloud
     hazh.transform_keys(&:to_sym)
   end
 
-  def partner_token_ttl
+  def partner_token_expiration
     (Time.now.to_i + PARTNER_TOKEN_TTL)
   end
 end

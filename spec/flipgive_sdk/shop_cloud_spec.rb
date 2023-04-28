@@ -95,7 +95,7 @@ RSpec.describe FlipgiveSDK::ShopCloud do
     it "Partner token has partner_token type" do
       token = FlipgiveSDK::ShopCloud.partner_token
       data = FlipgiveSDK::ShopCloud.read_token(token)
-      expect(data["type"]).to eq("partner_token")
+      expect(data["type"]).to eq("partner")
       expect(data["expires"]).to eq(Time.now.to_i + 3600)
     end
   end
