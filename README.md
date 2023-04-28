@@ -70,7 +70,7 @@ This method is used to generate a token that will identify a user or campaign. I
     $ campaign_data = {
       id: 19551105,
       name: 'The Time Travelers',
-      category: 'Running',
+      category: 'Events & Trips',
       country: 'CAN',
       admin_data: user_data
     }
