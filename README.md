@@ -2,12 +2,13 @@
 
 ## Shop Cloud
 
-Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashback store. If you would like to know more please visit "site" or contact us at "contact".
+Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashback store. If you would like to know more please visit www.flipgive.com/cloud or contact us at partners@flipgive.com.
 
 ### Links of Interest
 
-** [FlipGive](https://www.flipgive.com)
-** [API Documentation](https://docs.flipgive.com)
+* [FlipGive](https://www.flipgive.com)
+* [API Documentation](https://docs.flipgive.com)
+
 
 ### Installation
 
@@ -61,10 +62,10 @@ This method is used to generate a token that will identify a user or campaign. I
 The variable in this example uses other variables, (user_data, campaign_data, etc.). lets look at each one of them:
 
 - user_data: Required when campaign_data is not present in the payload, otherwise optional. It represents the user using the Shop, and must contain:
-  **1. `id`: required** A string representing the user's ID in your system.
-  **2. `email`: required** A string  with the user's email.
-  **3. `name`: required** A string  with the user's name.
-  **4. `country`: required** A string  with the ISO code of the user's country, which must be 'CAN' or 'USA' at this time.
+1. **`id`: required** A string representing the user's ID in your system.
+2. **`email`: required** A string  with the user's email.
+3. **`name`: required** A string  with the user's name.
+4. **`country`: required** A string  with the ISO code of the user's country, which must be 'CAN' or 'USA' at this time.
 
   ```ruby
     $ user_data = {
@@ -76,11 +77,12 @@ The variable in this example uses other variables, (user_data, campaign_data, et
   ```
 
 - `campaign_data`: Required when user_data is not present in the payload, otherwise optional. It represents the fundraising campaign and it must contain:
-  ** 1. `id`: required** A string representing the user's ID in your system.
-  ** 2. `name`: required** A string  with the campaign's email.
-  ** 3. `category`: required** A string  with the campaign's category. We will try to match it with one of our existing categories, or assign a default. You can see a list of our categories [here](https://github.com/BetterTheWorld/FlipGiveSDK_Ruby/blob/main/categories.txt).
-  ** 4. `country`: required** A string  with the ISO code of the campaign's country, which must be 'CAD' or 'USA' at this time.
-  ** 5. `admin_data`: required** The user information for the campaign's admin. It must contain the same information as `user_data`
+
+1. **`id`: required** A string representing the user's ID in your system.
+2. **`name`: required** A string  with the campaign's email.
+3. **`category`: required** A string  with the campaign's category. We will try to match it with one of our existing categories, or assign a default. You can see a list of our categories [here](https://github.com/BetterTheWorld/FlipGiveSDK_Ruby/blob/main/categories.txt).
+4. **`country`: required** A string  with the ISO code of the campaign's country, which must be 'CAD' or 'USA' at this time.
+5. **`admin_data`: required** The user information for the campaign's admin. It must contain the same information as `user_data`
 
   ```ruby
     $ campaign_data = {
@@ -93,8 +95,8 @@ The variable in this example uses other variables, (user_data, campaign_data, et
   ```
 
 - `group_data`: Always optional. Groups are aggregators for users within a campaign. For example, a group can be a Player on a sport's team and the users would the be the people supporting them.
-  **1. `name`: required** A string  with the group's name.
-  **2. `player_number`:** Optional. A sport's player number on the team.
+1. **`name`: required** A string  with the group's name.
+2. **`player_number`:** Optional. A sport's player number on the team.
 
   ```ruby
     $ group_data = { name: 'Marty McFly' }
@@ -102,9 +104,9 @@ The variable in this example uses other variables, (user_data, campaign_data, et
 
 - `organization_data`: Always optional. Organizations are used to group campaigns. As an example: A School (organization) has many Grades (campaigns), with Students (groups) and Parents (users) shopping to support their student.
 
-  **1. `id`: required** A string  with the organization's ID.
-  **2. `name`: required** A string  with the organization's name.
-  **3. `organization_admin`: required** The user information for the organization's admin. It must contain the same information as `user_data`
+1. **`id`: required** A string  with the organization's ID.
+2. **`name`: required** A string  with the organization's name.
+3. **`organization_admin`: required** The user information for the organization's admin. It must contain the same information as `user_data`
 
   ```ruby
     $ organization_data = {
@@ -143,6 +145,10 @@ Validation errors that occur while attempting to generate a token can be retriev
     $ FlipgiveSDK::ShopCloud.errors
     => [{:user_data=>"Country must be one of: 'CAN, USA'."}]
 ```
+
+### Support
+
+For developer support please open an issue on this repository.
 
 ### Contributing
 
