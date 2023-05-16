@@ -61,10 +61,10 @@ This method is used to generate a token that will identify a user or campaign. I
 The variable in this example uses other variables, (user_data, campaign_data, etc.). lets look at each one of them:
 
 - user_data: Required when campaign_data is not present in the payload, otherwise optional. It represents the user using the Shop, and must contain:
-..1.** `id`: required** A string representing the user's ID in your system.
-..2.** `email`: required** A string  with the user's email.
-..3.** `name`: required** A string  with the user's name.
-..4.** `country`: required** A string  with the ISO code of the user's country, which must be 'CAN' or 'USA' at this time.
+⋅⋅1.** `id`: required** A string representing the user's ID in your system.
+⋅⋅2.** `email`: required** A string  with the user's email.
+⋅⋅3.** `name`: required** A string  with the user's name.
+⋅⋅4.** `country`: required** A string  with the ISO code of the user's country, which must be 'CAN' or 'USA' at this time.
 
   ```ruby
     $ user_data = {
