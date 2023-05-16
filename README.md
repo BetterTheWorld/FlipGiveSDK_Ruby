@@ -93,8 +93,8 @@ The variable in this example uses other variables, (user_data, campaign_data, et
   ```
 
 - `group_data`: Always optional. Groups are aggregators for users within a campaign. For example, a group can be a Player on a sport's team and the users would the be the people supporting them.
-  **1. `name`: required** A string  with the group's name.
-  **2. `player_number`:** Optional. A sport's player number on the team.
+1. **`name`: required** A string  with the group's name.
+2. **`player_number`:** Optional. A sport's player number on the team.
 
   ```ruby
     $ group_data = { name: 'Marty McFly' }
@@ -102,9 +102,9 @@ The variable in this example uses other variables, (user_data, campaign_data, et
 
 - `organization_data`: Always optional. Organizations are used to group campaigns. As an example: A School (organization) has many Grades (campaigns), with Students (groups) and Parents (users) shopping to support their student.
 
-  **1. `id`: required** A string  with the organization's ID.
-  **2. `name`: required** A string  with the organization's name.
-  **3. `organization_admin`: required** The user information for the organization's admin. It must contain the same information as `user_data`
+1. **`id`: required** A string  with the organization's ID.
+2. **`name`: required** A string  with the organization's name.
+3. **`organization_admin`: required** The user information for the organization's admin. It must contain the same information as `user_data`
 
   ```ruby
     $ organization_data = {
