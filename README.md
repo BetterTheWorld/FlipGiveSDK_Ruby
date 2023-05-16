@@ -6,8 +6,8 @@ Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashba
 
 ### Links of Interest
 
-* [FlipGive](https://www.flipgive.com)
-* [API Documentation](https://docs.flipgive.com)
+- [FlipGive](https://www.flipgive.com)
+- [API Documentation](https://docs.flipgive.com)
 
 
 ### Installation
