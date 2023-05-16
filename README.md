@@ -77,6 +77,7 @@ The variable in this example uses other variables, (user_data, campaign_data, et
   ```
 
 - `campaign_data`: Required when user_data is not present in the payload, otherwise optional. It represents the fundraising campaign and it must contain:
+
 1. **`id`: required** A string representing the user's ID in your system.
 2. **`name`: required** A string  with the campaign's email.
 3. **`category`: required** A string  with the campaign's category. We will try to match it with one of our existing categories, or assign a default. You can see a list of our categories [here](https://github.com/BetterTheWorld/FlipGiveSDK_Ruby/blob/main/categories.txt).
