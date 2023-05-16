@@ -159,7 +159,7 @@ FlipgiveSDK::ShopCloud.errors
 
 ### Support
 
-For developer support please open an issue on this repository.
+For developer support please open an [issue](https://github.com/BetterTheWorld/FlipGiveSDK_Ruby/issues) on this repository.
 
 ### Contributing
 
