@@ -2,12 +2,14 @@
 
 ## Shop Cloud
 
-Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashback store. If you would like to know more please visit "site" or contact us at "contact".
+Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashback store. If you would like to know more please visit www.flipgive.com/cloud or contact us at partners@flipgive.com.
 
 ### Links of Interest
 
 * [FlipGive](https://www.flipgive.com)
 * [API Documentation](https://docs.flipgive.com)
+⋅⋅* test
+
 
 ### Installation
 
