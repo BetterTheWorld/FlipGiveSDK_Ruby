@@ -8,7 +8,6 @@ Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashba
 
 * [FlipGive](https://www.flipgive.com)
 * [API Documentation](https://docs.flipgive.com)
-⋅⋅* test
 
 
 ### Installation
@@ -145,6 +144,10 @@ Validation errors that occur while attempting to generate a token can be retriev
     $ FlipgiveSDK::ShopCloud.errors
     => [{:user_data=>"Country must be one of: 'CAN, USA'."}]
 ```
+
+### Support
+
+For developer support please open an issue on this repository.
 
 ### Contributing
 
