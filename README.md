@@ -133,6 +133,23 @@ Optional fields of invalid formats will not be validated but will be ignored.
   }
   ```
 
+- `utm_data`:  Always optional. UTM data will be saved when a campaign and/or user is created.
+  - `utm_medium`: A string representing utm_medium.
+  - `utm_campaign`: A string representing utm_campaign.
+  - `utm_term`: A string representing utm_term.
+  - `utm_content`: A string representing utm_content.
+  - `utm_channel`: A string representing utm_channel.
+
+  ```ruby
+  utm_data = {
+    utm_medium: "Universal Pictures",
+    utm_campaign: "Movie",
+    utm_term: "Time, Travel",
+    utm_content: "Image",
+    utm_channel: "Time"
+  }
+  ```
+
 #### :valid_identified?
 This method is used to validate a payload, without attempting to generate a token. It returns a Boolean. The same rules for `:identified_token` apply here as well.
 

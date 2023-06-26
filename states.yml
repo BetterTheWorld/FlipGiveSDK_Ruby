@@ -1,198 +1,122 @@
 USA:
 	AK:
-	   name: Alaska
-
+	  name: Alaska
 	AL:
-	   name: Alabama
-
+	  name: Alabama
 	AS:
-	   name: American Samoa
-
+	  name: American Samoa
 	AZ:
-	   name: Arizona
-
+	  name: Arizona
 	AR:
-	   name: Arkansas
-
+	  name: Arkansas
 	CA:
-	   name: California
-
+	  name: California
 	CO:
-	   name: Colorado
-
+	  name: Colorado
 	CT:
-	   name: Connecticut
-
+	  name: Connecticut
 	DE:
-	   name: Delaware
-
+	  name: Delaware
 	DC:
-	   name: District of Columbia
-
+	  name: District of Columbia
 	FM:
-	   name: Federated States of Micronesia
-
+	  name: Federated States of Micronesia
 	FL:
-	   name: Florida
-
+	  name: Florida
 	GA:
-	   name: Georgia
-
+	  name: Georgia
 	GU:
-	   name: Guam
-
+	  name: Guam
 	HI:
-	   name: Hawaii
-
+	  name: Hawaii
 	ID:
-	   name: Idaho
-
+	  name: Idaho
 	IL:
-	   name: Illinois
-
+	  name: Illinois
 	IN:
-	   name: Indiana
-
+	  name: Indiana
 	IA:
-	   name: Iowa
-
+	  name: Iowa
 	KS:
-	   name: Kansas
-
+	  name: Kansas
 	KY:
-	   name: Kentucky
-
+	  name: Kentucky
 	LA:
-	   name: Louisiana
-
+	  name: Louisiana
 	ME:
-	   name: Maine
-
+	  name: Maine
 	MH:
-	   name: Marshall Islands
-
+	  name: Marshall Islands
 	MD:
-	   name: Maryland
-
+	  name: Maryland
 	MA:
-	   name: Massachusetts
-
+	  name: Massachusetts
 	MI:
-	   name: Michigan
-
+	  name: Michigan
 	MN:
-	   name: Minnesota
-
+	  name: Minnesota
 	MS:
-	   name: Mississippi
-
+	  name: Mississippi
 	MO:
-	   name: Missouri
-
+	  name: Missouri
 	MT:
-	   name: Montana
-
+	  name: Montana
 	NE:
-	   name: Nebraska
-
+	  name: Nebraska
 	NV:
-	   name: Nevada
-
+	  name: Nevada
 	NH:
-	   name: New Hampshire
-
+	  name: New Hampshire
 	NJ:
-	   name: New Jersey
-
+	  name: New Jersey
 	NM:
-	   name: New Mexico
-
+	  name: New Mexico
 	NY:
-	   name: New York
-
+	  name: New York
 	NC:
-	   name: North Carolina
-
+	  name: North Carolina
 	ND:
-	   name: North Dakota
-
+	  name: North Dakota
 	MP:
-	   name: Northern Mariana Islands
-
+	  name: Northern Mariana Islands
 	OH:
-	   name: Ohio
-
+	  name: Ohio
 	OK:
-	   name: Oklahoma
-
+	  name: Oklahoma
 	OR:
-	   name: Oregon
-
+	  name: Oregon
 	PW:
-	   name: Palau
-
+	  name: Palau
 	PA:
-	   name: Pennsylvania
-
+	  name: Pennsylvania
 	PR:
-	   name: Puerto Rico
-
+	  name: Puerto Rico
 	RI:
-	   name: Rhode Island
-
+	  name: Rhode Island
 	SC:
-	   name: South Carolina
-
+	  name: South Carolina
 	SD:
-	   name: South Dakota
-
+	  name: South Dakota
 	TN:
-	   name: Tennessee
-
+	  name: Tennessee
 	TX:
-	   name: Texas
-
+	  name: Texas
 	UT:
-	   name: Utah
-
+	  name: Utah
 	VT:
-	   name: Vermont
-
+	  name: Vermont
 	VI:
-	   name: Virgin Islands
-
+	  name: Virgin Islands
 	VA:
-	   name: Virginia
-
+	  name: Virginia
 	WA:
-	   name: Washington
-
+	  name: Washington
 	WV:
-	   name: West Virginia
-
+	  name: West Virginia
 	WI:
-	   name: Wisconsin
-
+	  name: Wisconsin
 	WY:
-	   name: Wyoming
-
-	AE:
-	   name: Armed Forces Africa
-
-	AA:
-	   name: Armed Forces Americas (except Canada)
-
-	AE:
-	   name: Armed Forces Canada
-
-	AE:
-	   name: Armed Forces Europe
-
-	AE:
-	   name: Armed Forces Middle East
-
-	AP:
-	   name: Armed Forces Pacific
+	  name: Wyoming
 CAN:
 	AB:
 		name: Alberta
