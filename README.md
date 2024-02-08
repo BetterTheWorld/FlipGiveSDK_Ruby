@@ -1,8 +1,8 @@
 # FlipgiveSDK
 
-## Shop Cloud
+## Rewards
 
-Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashback store. If you would like to know more please visit www.flipgive.com/cloud or contact us at partners@flipgive.com.
+Rewards is [FlipGive's](https://www.flipgive.com) drop-in cashback program. If you would like to know more please contact us at partners@flipgive.com.
 
 ### Links of Interest
 
@@ -11,7 +11,7 @@ Shop Cloud _(The Shop)_ is [FlipGive's](https://www.flipgive.com) drop-in cashba
 
 ### Installation
 
-To begin using `FlipGiveSDK::ShopCloud`, you should have obtained an `ID` and `Secret` pair from FlipGive, store these securely so that they are accessible in your application (env variables, rails credentials, etc). We'll be using env variables in our example below. If you haven't received credentials, please contact us at partners@flipgive.com.
+To begin using `FlipGiveSDK::Rewards`, you should have obtained an `ID` and `Secret` pair from FlipGive, store these securely so that they are accessible in your application (env variables, rails credentials, etc). We'll be using env variables in our example below. If you haven't received credentials, please contact us at partners@flipgive.com.
 
 Add the gem to your Gemfile:
 
@@ -19,21 +19,21 @@ Add the gem to your Gemfile:
 gem 'flipgive_sdk', git: "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby.git"
 ```
 
-After you have installed the gem include the code below to initialize the ShopCloud:
+After you have installed the gem include the code below to initialize the Rewards:
 
 ```ruby
-FlipgiveSDK::ShopCloud.flip(ENV['shop_cloud_id'], ENV['shop_cloud_secret'])
+FlipgiveSDK::Rewards.flip(ENV['rewards_id'], ENV['rewards_secret'])
 ```
-We recommend using its own initializer file `myapp/config/initializers/shop_cloud.rb`.
+We recommend using its own initializer file `myapp/config/initializers/rewards.rb`.
 
-ShopCloud is now ready to use.
+Rewards is now ready to use.
 
 ### Usage
 
-The main purpose of `FlipgiveSDK::ShopCloud` is to generate Tokens to gain access to FlipGive's Shop Cloud API. There are 6 methods on the gem's public API.
+The main purpose of `FlipgiveSDK::Rewards` is to generate Tokens to gain access to FlipGive's Rewards API. There are 6 methods on the gem's public API.
 
 #### :flip
-This method is used to initialize the SDK, as described on the setup section of this document. It takes 2 arguments, the `shop_cloud_id` and the `shop_cloud_Secret`.
+This method is used to initialize the SDK, as described on the setup section of this document. It takes 2 arguments, the `rewards_id` and the `rewards_secret`.
 
 #### :read_token
 This method is used to decode a token that has been generated with your credentials. It takes a single string as an argument and, if able to decode the token, it will return a hash.
@@ -41,7 +41,7 @@ This method is used to decode a token that has been generated with your credenti
 ```ruby
 token = "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4R0NNIn0..demoToken.g8PZPWb1KDFcAkTsufZq0w@A2DE537C"
 
-FlipgiveSDK::ShopCloud.read_token(token)
+FlipgiveSDK::Rewards.read_token(token)
 => { user_data: { id: 1, name: 'Emmett Brown', email: 'ebrown@time.ca', country: 'USA' } }
 ```
 
@@ -56,7 +56,7 @@ payload = {
   organization_data: organization_data
 }
 
-FlipgiveSDK::ShopCloud.identified_token(payload)
+FlipgiveSDK::Rewards.identified_token(payload)
 => "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4R0NNIn0..demoToken.g8PZPWb1KDFcAkTsufZq0w@A2DE537C"
 ```
 
@@ -158,15 +158,15 @@ payload = {
   user_data: user_data 
 }
 
-FlipgiveSDK::ShopCloud.valid_identified?(payload)
+FlipgiveSDK::Rewards.valid_identified?(payload)
 => true
 ```
 
 #### :partner_token
-This method is used to generate a token that can **only** be used by the Shop Cloud partner (that's you) to access reports and other API endpoints. It is only valid for an hour. 
+This method is used to generate a token that can **only** be used by the Rewards partner (that's you) to access reports and other API endpoints. It is only valid for an hour. 
 
 ```ruby
-FlipgiveSDK::ShopCloud.partner_token
+FlipgiveSDK::Rewards.partner_token
 => "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4R0NNIn0..demoToken.h9QXQEn2LFGVSlTdiGXW1e@A2DE537C"
 ```
 
@@ -180,11 +180,11 @@ payload = {
   user_data: user_data 
 }
 
-FlipgiveSDK::ShopCloud.valid_identified?(payload)
+FlipgiveSDK::Rewards.valid_identified?(payload)
 
 # FlipgiveSDK::Error (Invalid payload.)
 
-FlipgiveSDK::ShopCloud.errors
+FlipgiveSDK::Rewards.errors
 
 => [{:user_data=>"Country must be one of: 'CAN, USA'."}]
 ```

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Alejandro"]
   spec.email = ["alosada@flipgive.com"]
 
-  spec.summary = "FlipGive's Shop Cloud Ruby SDK."
-  spec.description = "FlipGive's Shop Cloud Ruby SDK."
+  spec.summary = "FlipGive's Ruby SDK."
+  spec.description = "FlipGive's Ruby SDK."
   spec.homepage = "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby"
   spec.required_ruby_version = ">= 2.6.0"
 

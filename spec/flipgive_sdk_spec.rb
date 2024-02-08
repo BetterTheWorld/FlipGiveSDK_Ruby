@@ -5,7 +5,7 @@ RSpec.describe FlipgiveSDK do
     expect(FlipgiveSDK::VERSION).not_to be nil
   end
 
-  it "expects ShopCloud to exist" do
-    expect(FlipgiveSDK::ShopCloud).not_to be nil
+  it "expects Rewards to exist" do
+    expect(FlipgiveSDK::Rewards).not_to be nil
   end
 end
