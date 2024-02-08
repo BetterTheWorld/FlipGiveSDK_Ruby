@@ -19,7 +19,7 @@ Add the gem to your Gemfile:
 gem 'flipgive_sdk', git: "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby.git"
 ```
 
-After you have installed the gem include the code below to initialize the Rewards:
+After you have installed the gem include the code below to initialize the SDK:
 
 ```ruby
 FlipgiveSDK::Rewards.flip(ENV['rewards_id'], ENV['rewards_secret'])
