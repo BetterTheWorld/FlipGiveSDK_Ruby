@@ -26,8 +26,8 @@ FlipgiveSDK::Rewards.flip(ENV['rewards_id'], ENV['rewards_secret'])
 ```
 We recommend using its own initializer file `myapp/config/initializers/rewards.rb`.
 
-Rewards is now ready to use.
-
+The SDK is now ready to use.
+se
 ### Usage
 
 The main purpose of `FlipgiveSDK::Rewards` is to generate Tokens to gain access to FlipGive's Rewards API. There are 6 methods on the gem's public API.
