@@ -15,7 +15,7 @@ RSpec.configure do |config|
   end
 end
 
-class ShopCloudHelper
+class RewardsHelper
   class << self
     def person_data
       nom = Faker::Movies::StarWars.character

@@ -1,13 +1,13 @@
 require "jwe"
 
 # class to handle shop cloud tokens
-class FlipgiveSDK::ShopCloud
+class FlipgiveSDK::Rewards
   COUNTRIES = %w[CAN USA].freeze
   PARTNER_TOKEN_TTL = 3600 # SECONDS
 
   class << self
-    def flip(cloud_shop_id, secret)
-      @instance = new(cloud_shop_id, secret)
+    def flip(id, secret)
+      @instance = new(id, secret)
       :initialized
     end
 
@@ -32,15 +32,15 @@ class FlipgiveSDK::ShopCloud
     end
   end
 
-  def initialize(cloud_shop_id, secret)
-    @cloud_shop_id = cloud_shop_id
+  def initialize(id, secret)
+    @id = id
     @secret = secret.gsub("sk_", nil.to_s)
     @errors = []
   end
 
   def read_token(token)
     encrypted_string, shop_id = token.split("@")
-    raise invalid_token_error if shop_id != cloud_shop_id
+    raise invalid_token_error if shop_id != id
 
     json = JWE.decrypt(encrypted_string, secret)
     JSON.parse(json)
@@ -50,7 +50,7 @@ class FlipgiveSDK::ShopCloud
     raise validation_error unless valid_identified?(payload)
 
     token = JWE.encrypt(payload.to_json, secret, alg: "dir")
-    [token, cloud_shop_id].join("@")
+    [token, id].join("@")
   end
 
   def valid_identified?(payload)
@@ -69,16 +69,16 @@ class FlipgiveSDK::ShopCloud
   end
 
   def partner_token
-    payload = { type: "partner", expires:  partner_token_expiration }
+    payload = { type: "partner", expires: partner_token_expiration }
     token = JWE.encrypt(payload.to_json, secret, alg: "dir")
-    [token, cloud_shop_id].join("@")
+    [token, id].join("@")
   end
 
   attr_reader :errors
 
   private
 
-  attr_reader :secret, :cloud_shop_id
+  attr_reader :secret, :id
 
   def invalid_token_error
     FlipgiveSDK::Error.new("Invalid Token.")
