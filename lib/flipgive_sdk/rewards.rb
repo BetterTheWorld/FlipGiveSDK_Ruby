@@ -69,7 +69,7 @@ class FlipgiveSDK::Rewards
   end
 
   def partner_token
-    payload = { type: "partner", expires:  partner_token_expiration }
+    payload = { type: "partner", expires: partner_token_expiration }
     token = JWE.encrypt(payload.to_json, secret, alg: "dir")
     [token, id].join("@")
   end
