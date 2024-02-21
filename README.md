@@ -16,7 +16,7 @@ To begin using `FlipGiveSDK::Rewards`, you should have obtained an `ID` and `Sec
 Add the gem to your Gemfile:
 
 ```ruby
-gem 'flipgive_sdk', git: "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby.git"
+gem 'flipgive_sdk', git: "https://github.com/BetterTheWorld/FlipGiveSDK_Ruby.git", tag: "1.0"
 ```
 
 After you have installed the gem include the code below to initialize the SDK:
